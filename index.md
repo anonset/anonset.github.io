@@ -1,35 +1,84 @@
 ---
-title: Home
+title: Anonset
 layout: home
 ---
 
-This is a *bare-minimum* template to create a Jekyll site that uses the [Just the Docs] theme. You can easily set the created site to be published on [GitHub Pages] – the [README] file explains how to do that, along with other details.
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/anonset/anonset) ![GitHub commit activity](https://img.shields.io/github/commit-activity/w/anonset/anonset) ![GitHub last commit](https://img.shields.io/github/last-commit/anonset/anonset)
 
-If [Jekyll] is installed on your computer, you can also build and preview the created site *locally*. This lets you test changes before committing them, and avoids waiting for GitHub Pages.[^1] And you will be able to deploy your local build to a different platform than GitHub Pages.
+Calculate the anonymity set (anonset) of a Solana pool.
 
-More specifically, the created site:
+```md
+╔═══════════════════════════════════════════════════════════════════════════════════ Data ═╗
+║ Address scanned        : 4AV2Qzp3N4c9RfzyEbNZs2wqWfW4EwKnnxFAZCndvfGh                    ║
+║ Total time scanned     : 40 hours 30 minutes                                             ║
+║ Script duration        : 369.28 seconds                                                  ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
 
-- uses a gem-based approach, i.e. uses a `Gemfile` and loads the `just-the-docs` gem
-- uses the [GitHub Pages / Actions workflow] to build and publish the site on GitHub Pages
+╔═════════════════════════════════════════════════════════════════════════ Anonymity Sets ═╗
+║           VALUE (SOL) │ ANONYMITY SET │ HISTOGRAM                                        ║
+║               1 ◎ SOL │            32 │ ################################                 ║
+║              10 ◎ SOL │            25 │ #########################                        ║
+║             0.1 ◎ SOL │            22 │ ######################                           ║
+║               5 ◎ SOL │            21 │ #####################                            ║
+║              20 ◎ SOL │            19 │ ###################                              ║
+║             0.5 ◎ SOL │            13 │ #############                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
 
-Other than that, you're free to customize sites that you create with this template, however you like. You can easily change the versions of `just-the-docs` and Jekyll it uses, as well as adding further plugins.
+╔═════════════════════════════════════════════════════════════════════════════════ Volume ═╗
+║ Transactions           : 3000  (Deposits: 1180, Withdrawals: 1765)                       ║
+║ Volume                 : 32168.74 SOL                                                    ║
+╚══════════════════════════════════════════════════════════════════════════════════════════╝
+```
 
-[Browse our documentation][Just the Docs] to learn more about how to use this theme.
+## 🔌 Installation
 
-To get started with creating a site, simply:
+Install using pip:
 
-1. click "[use this template]" to create a GitHub repository
-2. go to Settings > Pages > Build and deployment > Source, and select GitHub Actions
+```bash
+pip install git+https://github.com/anonset/anonset.git
+```
 
-If you want to maintain your docs in the `docs` directory of an existing project repo, see [Hosting your docs from an existing project repo](https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md#hosting-your-docs-from-an-existing-project-repo) in the template README.
+## 🔩 Usage
 
+Provide an address to scan and optionally a custom RPC URL and transaction limit.
+
+```bash
+anonset --address ADDRESS [--rpc RPC_URL] [--limit LIMIT]
+```
+
+## 🐣 Example
+
+Calculate the anonymity sets of PrivacyCash (4AV2Qzp3N4c9RfzyEbNZs2wqWfW4EwKnnxFAZCndvfGh)
+
+```bash
+anonset --address 4AV2Qzp3N4c9RfzyEbNZs2wqWfW4EwKnnxFAZCndvfGh --limit 1000
+```
+
+## 📕 Docstring
+
+```bash
+NAME
+       anonset - calculate anonymity set
+
+SYNOPSIS
+       anonset --address ADDRESS [--rpc RPC_URL] [--limit LIMIT]
+
+DESCRIPTION
+       Fetches  recent  transactions  for  a  Solana  address,  calculates
+       anonymity  sets by grouping identical SOL balance changes, and dis-
+       plays results with ASCII histograms and summary tables.
+
+OPTIONS
+       --address ADDRESS
+              Solana account address to analyze (required)
+
+       --rpc RPC_URL
+              RPC endpoint URL (default: https://solana-rpc.publicnode.com)
+
+       --limit LIMIT
+              Number of recent transactions to scan (default: 100)
+```
 ----
 
-[^1]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
-
-[Just the Docs]: https://just-the-docs.github.io/just-the-docs/
-[GitHub Pages]: https://docs.github.com/en/pages
-[README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[Jekyll]: https://jekyllrb.com
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use this template]: https://github.com/just-the-docs/just-the-docs-template/generate
+[GitHub]: https://github.com/anonset
+[Docs]: https://anonset.github.io/
