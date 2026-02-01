@@ -1,5 +1,6 @@
-title: Just the Docs Template
-description: A starter template for a Jeykll site using the Just the Docs theme!
+title: Anonset
+description: Calculate anonymity sets.
 theme: just-the-docs
 
+favicon_ico: "/assets/images/anonset.png"
 url: https://anonset.github.io
