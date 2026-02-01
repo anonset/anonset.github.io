@@ -1,5 +1,6 @@
 ---
 title: What are Anonymity Sets?
+layout: home
 parent: Learn
 ---
 
